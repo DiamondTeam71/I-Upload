@@ -3,109 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Upload — Upload Your Generation!</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Hind+Siliguri:wght@700&display=swap" rel="stylesheet"/>
+<title>I Upload — Upload Your Generation Instantly!</title>
+<link rel="icon" type="image/png" href="https://i-upload.netlify.app/logo.jpeg">
+
+<meta name="title" content="I Upload — Upload Your Generation Instantly!">
+<meta name="description" content="Upload, crop, and share your images or GIFs instantly. Get fast links for social media, blogs, or personal use. Easy, free, and quick image uploader.">
+<meta name="keywords" content="image uploader, GIF uploader, online image cropper, instant image link, share images online, free image hosting, upload photos, social media images, I Upload">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://i-upload.netlify.app/">
+<meta property="og:title" content="I Upload — Upload Your Generation Instantly!">
+<meta property="og:description" content="Upload, crop, and share your images or GIFs instantly. Easy, fast, and free image hosting for social media or personal use.">
+<meta property="og:image" content="https://i-upload.netlify.app/logo.jpeg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://i-upload.netlify.app/">
+<meta property="twitter:title" content="I Upload — Upload Your Generation Instantly!">
+<meta property="twitter:description" content="Upload, crop, and share your images or GIFs instantly. Easy, fast, and free image hosting for social media or personal use.">
+<meta property="twitter:image" content="https://i-upload.netlify.app/logo.jpeg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "I Upload",
+  "url": "https://i-upload.netlify.app/",
+  "description": "Upload, crop, and share your images or GIFs instantly. Fast and free image hosting.",
+  "applicationCategory": "Multimedia",
+  "operatingSystem": "Web",
+  "potentialAction": {
+    "@type": "UploadAction",
+    "target": "https://i-upload.netlify.app/"
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+<link rel="shortcut icon" href="logo.png" type="image/x-icon">
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Hind Siliguri','Poppins',sans-serif;}
-body {display:flex; justify-content:center; align-items:center; height:100vh; background:url("https://i.ibb.co/T91cvMJ/blob.jpg") no-repeat center center fixed; background-size:cover;}
-.container {width:90%; max-width:400px; max-height:80vh; background:rgba(255,255,255,0.95); padding:20px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.3); text-align:center; margin:0 10px; border:5px solid black; overflow-y:auto; -webkit-overflow-scrolling:touch;}
-h2 {text-align:center; margin-bottom:10px; color:#333; background:yellow; padding:3px; margin:0 15px 15px 15px; border-radius:37px; border:5px solid black;}
-input[type=file] {margin:15px 0; padding:8px; border-radius:37px; border:4px solid black; cursor:pointer; width:100%;}
-button {padding:12px 20px; margin:10px 5px; border:4px solid black; border-radius:12px; background:linear-gradient(90deg,#ff6ec4,#7873f5); color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:0.3s;}
-button:hover {transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3);}
-#previewWrapper {position:relative; width:100%; max-height:300px; overflow:hidden; margin:15px auto; border-radius:nonepx; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-#preview {width:100%; display:block; touch-action:none;}
-#linkContainer {display:none; margin-top:15px;}
-#link {width:100%; padding:10px; border-radius:37px; border:4px solid black; margin-bottom:10px;}
-#loader {display:none; margin-top:10px; font-weight:600; color:#ff6ec4;}
+  
+  
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Hind Siliguri','Poppins',sans-serif;}  
+body {
+  display: flex;        
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  gap: 20px;
+  padding: 0;
+  background: url("https://i.ibb.co/T91cvMJ/blob.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-weight: bold;
+  min-height: 100vh;
+}
+.container {width:90%; max-width:400px; max-height:80vh; background:rgba(255,255,255,0.95); padding:20px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.3); text-align:center; margin:0 10px; border:5px solid black; overflow-y:auto; -webkit-overflow-scrolling:touch;}  
+h2 {text-align:center; margin-bottom:10px; color:#333; background:yellow; padding:3px; margin:0 15px 15px 15px; border-radius:37px; border:5px solid black;}  
+input[type=file] {margin:15px 0; padding:8px; border-radius:37px; border:4px solid black; cursor:pointer; width:100%;}  
+button {padding:12px 20px; margin:10px 5px; border:4px solid black; border-radius:12px; background:linear-gradient(90deg,#ff6ec4,#7873f5); color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:0.3s;}  
+button:hover {transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3);}  
+#previewWrapper {position:relative; width:100%; max-height:300px; overflow:hidden; margin:15px auto; border-radius:nonepx; box-shadow:0 5px 15px rgba(0,0,0,0.2);}  
+#preview {width:100%; display:block; touch-action:none;}  
+#linkContainer {display:none; margin-top:15px;}  
+#link {width:100%; padding:10px; border-radius:37px; border:4px solid black; margin-bottom:10px;}  
+#loader {display:none; margin-top:10px; font-weight:600; color:#ff6ec4;}  
+  
+.history-input-box {  
+  position: relative;  
+  width: 100%;  
+}  
+
+  
+.history-copy-btn {  
+  position: absolute;  
+  left: 1px;   
+  top: 35%;  
+  transform: translateY(-50%);  
+  background: none;  
+  border: none;  
+  font-size: 18px;  
+  color: #333;  
+  cursor: pointer;  
+}  
+  
+.history-url-input {  
+  width: 100%;  
+  padding: 10px 12px 10px 45px;   
+  border: 4px solid black;  
+  border-radius: 25px;  
+  font-size: 15px;  
+}  
+    
+marquee {
+  background: yellow;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  padding: 15px;
+  font-weight: bold;
+  margin: 0;
+  border-radius: 0;
+  display: block;
+}
+
+
 </style>
 </head>
 <body>
+ <script type='text/javascript' src='//pl28125150.effectivegatecpm.com/ce/75/23/ce75232fc2d7b3eb5b13cfb871e6e1bc.js'></script>
+<marquee><i class="fas fa-bolt"></i> 
+Upload, crop and share your images or GIFs instantly. Get fast links for social media, blogs, or personal use. Easy, free, and quick image uploader!
+</marquee>
 <div class="container">
-<h2><i class="fas fa-upload"></i> I Upload — Upload Your Generation</h2>
+<h2><i class="fas fa-upload"></i> I Upload — Upload Your Generation!</h2>
 <input type="file" id="fileInput" accept="image/*,.gif"><br>
 <button id="toggleCropBtn"><i class="fas fa-crop"></i> Enable Crop</button>
 <button id="uploadBtn"><i class="fas fa-upload"></i> Upload</button>
 <div id="loader"><i class="fas fa-spinner fa-spin"></i> Uploading...</div>
-<div id="previewWrapper"><img id="preview" src="" alt="এখানে প্রিভিউ দেখানো হবে!"></div>
+<div id="previewWrapper"><img id="preview" src="" alt="Here U can show the preview!"></div>
 <div id="linkContainer">
 <input type="text" id="link" readonly>
 <button id="copyBtn"><i class="fas fa-copy"></i> Copy Link</button>
 </div>
 </div>
+<div class="container" style="margin-top:20px;">
+ <h2><i class="fas fa-upload"></i> Your History!</h2>
+ <div id="historyBox"></div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script>
-const fileInput = document.getElementById('fileInput');
-const toggleCropBtn = document.getElementById('toggleCropBtn');
-const uploadBtn = document.getElementById('uploadBtn');
-const preview = document.getElementById('preview');
-const previewWrapper = document.getElementById('previewWrapper');
-const linkContainer = document.getElementById('linkContainer');
-const linkInput = document.getElementById('link');
-const copyBtn = document.getElementById('copyBtn');
-const loader = document.getElementById('loader');
-let cropper = null;
-let cropEnabled = false;
-const imgbbApiKey = 'ffa6fb5ad76979e8aa67715e5f1b1b93';
+const fileInput=document.getElementById('fileInput');
+const toggleCropBtn=document.getElementById('toggleCropBtn');
+const uploadBtn=document.getElementById('uploadBtn');
+const preview=document.getElementById('preview');
+const linkContainer=document.getElementById('linkContainer');
+const linkInput=document.getElementById('link');
+const copyBtn=document.getElementById('copyBtn');
+const loader=document.getElementById('loader');
+let cropper=null;
+let cropEnabled=false;
+const imgbbApiKey='ffa6fb5ad76979e8aa67715e5f1b1b93';
 
-fileInput.addEventListener('change', (e)=>{
-    const file = e.target.files[0];
+function loadHistory() {
+    const box = document.getElementById("historyBox");
+    box.innerHTML = "";
+    const list = JSON.parse(localStorage.getItem("uploadHistory") || "[]");
+
+    list.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.style.cssText = "border:5px solid black;padding:5px;border-radius:37px;margin:8px 0;background:white;";
+
+        const img = document.createElement("img");
+        img.src = item.thumb;
+        img.style.cssText = "width:100%;border-radius:37px;border:4px solid black;";
+        div.appendChild(img);
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "history-input-box";
+        wrapper.style.marginTop = "5px";
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.readOnly = true;
+        input.className = "history-url-input";
+        input.id = `historyInput${index}`;
+        input.value = item.url;
+
+        const btn = document.createElement("button");
+        btn.className = "history-copy-btn";
+        btn.innerHTML = `<i class="fas fa-copy"></i>`;
+        btn.addEventListener("click", () => {
+            navigator.clipboard.writeText(item.url);
+        });
+
+        wrapper.appendChild(btn);
+        wrapper.appendChild(input);
+
+        div.appendChild(wrapper);
+        box.appendChild(div);
+    });
+}
+
+function saveHistory(url,thumb){
+    const list=JSON.parse(localStorage.getItem("uploadHistory")||"[]");
+    list.unshift({url,thumb});
+    localStorage.setItem("uploadHistory",JSON.stringify(list));
+}
+
+fileInput.addEventListener('change',e=>{
+    const file=e.target.files[0];
     if(file){
-        const reader = new FileReader();
-        reader.onload = function(ev){
-            preview.src = ev.target.result;
+        const reader=new FileReader();
+        reader.onload=ev=>{
+            preview.src=ev.target.result;
             preview.style.display='block';
-            if(cropper){cropper.destroy(); cropper=null; cropEnabled=false; toggleCropBtn.innerHTML='<i class="fas fa-crop"></i> Enable Crop';}
-        }
+            if(cropper){cropper.destroy();cropper=null;cropEnabled=false;toggleCropBtn.innerHTML='<i class="fas fa-crop"></i> Enable Crop';}
+        };
         reader.readAsDataURL(file);
     }
 });
 
-toggleCropBtn.addEventListener('click', ()=>{
-    if(!preview.src) return alert("Please select an image first!");
+toggleCropBtn.addEventListener('click',()=>{
+    if(!preview.src)return alert("Please select an image first!");
     if(!cropEnabled){
-        cropper = new Cropper(preview, {aspectRatio:1, viewMode:2, responsive:true, background:false, autoCropArea:1});
-        cropEnabled = true;
-        toggleCropBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Crop';
-    } else {
+        cropper=new Cropper(preview,{aspectRatio:1,viewMode:2,responsive:true,background:false,autoCropArea:1});
+        cropEnabled=true;
+        toggleCropBtn.innerHTML='<i class="fas fa-eye-slash"></i> Hide Crop';
+    }else{
         cropper.destroy();
-        cropper = null;
-        cropEnabled = false;
-        toggleCropBtn.innerHTML = '<i class="fas fa-crop"></i> Enable Crop';
+        cropper=null;
+        cropEnabled=false;
+        toggleCropBtn.innerHTML='<i class="fas fa-crop"></i> Enable Crop';
     }
 });
 
-uploadBtn.addEventListener('click', async ()=>{
-    if(!preview.src) return alert("Please select an image!");
+uploadBtn.addEventListener('click',async()=>{
+    if(!preview.src)return alert("Please select an image!");
     let blob;
-    if(cropEnabled && cropper){
-        blob = await new Promise(res=>cropper.getCroppedCanvas().toBlob(res,'image/png'));
-    } else {
-        const response = await fetch(preview.src);
-        blob = await response.blob();
+    if(cropEnabled&&cropper){
+        blob=await new Promise(res=>cropper.getCroppedCanvas().toBlob(res,'image/png'));
+    }else{
+        const response=await fetch(preview.src);
+        blob=await response.blob();
     }
-    const formData = new FormData();
+    const formData=new FormData();
     formData.append("image",blob);
     loader.style.display='block';
     try{
-        const res = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,{method:"POST",body:formData});
-        const data = await res.json();
+        const res=await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,{method:"POST",body:formData});
+        const data=await res.json();
         if(data.success){
             linkInput.value=data.data.url;
             linkContainer.style.display='block';
+            saveHistory(data.data.url,preview.src);
+            loadHistory();
         }else{alert("Upload failed!");}
     }catch(err){alert("Error uploading: "+err.message);}
     finally{loader.style.display='none';}
 });
 
-copyBtn.addEventListener('click', ()=>{
+copyBtn.addEventListener('click',()=>{
     linkInput.select();
     linkInput.setSelectionRange(0,99999);
     navigator.clipboard.writeText(linkInput.value);
     alert("Link copied!");
 });
+
+loadHistory();
 </script>
 </body>
-  </html>
+</html>
