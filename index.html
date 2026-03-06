@@ -128,7 +128,7 @@ marquee {
  <p>
   <i class="fas fa-info-circle" style="font-size: 22px; color: #4CAF50;"></i>
   
-  যদি উপরোক্ত সমস্যা দেখা দেয়, তাহলে <strong>"Reset All Site Data"</strong> বোতামে ক্লিক করুন। এটি সাধারণত সব ধরনের ব্রাউজার সংক্রান্ত ত্রুটি বা সেশন সমস্যা সমাধান করে।<br>
+  যদি উপরোক্ত সমস্যা দেখা দেয়, তাহলে <strong>"Reset All Site Data"</strong> বোতামে ক্লিক করুন। এটি সাধারণত সব ধরনের ব্রাউজার সংক্রান্ত ত্রুটি বা সেশন সমস্যা সমাধান করে। তবে সর্বপ্রথম যা করণীয় তা হচ্ছে গুরুত্বপূর্ণ ইমেজ লিংক গুলো নিজের নোড বুক এপ গুলোতে আগে থেকে সেভ করে নেওয়া।<br>
   <i class="fas fa-triangle-exclamation" style="font-size: 22px; color: #FF9800;"></i>
   
   দয়া করে মনে রাখুন, এই সাইটে কিছু এডাল্ট বিজ্ঞাপন প্রদর্শিত হতে পারে। আমরা চেষ্টা করি ব্যবহারকারীদের জন্য নিরাপদ এবং হালকা অভিজ্ঞতা নিশ্চিত করতে, কিন্তু বিজ্ঞাপনগুলোর বিষয়বস্তু সম্পূর্ণভাবে আমাদের নিয়ন্ত্রণের বাইরে থাকে।
@@ -146,13 +146,15 @@ marquee {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto; /* Vertical scroll only */
+  overflow-x: hidden; /* Horizontal scroll বন্ধ */
   background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
 }
 
 .popup-content {
   background-color: rgba(255,255,255,0.95);
-  margin: 10% auto;
+  margin: 5% auto; /* একটু কম margin, vertical scroll সহজ হবে */
   padding: 30px;
   border-radius: 47px;
   width: 90%;
@@ -160,8 +162,9 @@ marquee {
   text-align: center;
   box-shadow: 0 15px 35px rgba(0,0,0,0.3);
   position: relative;
+  max-height: 90vh; /* viewport height-এর 90% পর্যন্ত content দেখাবে */
+  overflow-y: auto; /* modal-এর ভিতরের content scrollable */
 }
-
 .popup-content img {
   width: 100%;
   border-radius: 40px;
