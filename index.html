@@ -48,26 +48,36 @@
   
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Hind Siliguri','Poppins',sans-serif;}  
 body {
-  display: flex;        
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-  gap: 20px;
+  margin: 0;
   padding: 0;
+  font-family:'Hind Siliguri','Poppins',sans-serif;
   background: url("https://i.ibb.co/T91cvMJ/blob.jpg") no-repeat center center fixed;
   background-size: cover;
   font-weight: bold;
   min-height: 100vh;
+  /* Flex সরানো */
+  display: block;
 }
-.container {width:90%; max-width:400px; max-height:80vh; background:rgba(255,255,255,0.95); padding:20px; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.3); text-align:center; margin:0 10px; border:5px solid black; overflow-y:auto; -webkit-overflow-scrolling:touch; margin-bottom: 20px;}  
-h2 {text-align:center; margin-bottom:10px; color:#333; background:yellow; padding:3px; margin:0 15px 15px 15px; border-radius:37px; border:5px solid black;}  
-input[type=file] {margin:15px 0; padding:8px; border-radius:37px; border:4px solid black; cursor:pointer; width:100%;}  
-button {padding:12px 20px; margin:10px 5px; border:4px solid black; border-radius:12px; background:linear-gradient(90deg,#ff6ec4,#7873f5); color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:0.3s;}  
+.container {
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 40px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  text-align: center;
+  margin: 20px auto; /* Horizontal auto centering + vertical margin */
+  overflow-y: auto;
+}
+h2 {text-align:center; margin-bottom:10px; color:#333; background:yellow; padding:3px; margin:0 15px 15px 15px; border-radius:37px; border:0px solid black;}  
+input[type=file] {margin:15px 0; padding:8px; border-radius:37px; border:0px solid black; cursor:pointer; width:100%;}  
+button {padding:12px 20px; margin:10px 5px; border:0px solid black; border-radius:12px; background:linear-gradient(90deg,#ff6ec4,#7873f5); color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:0.3s;}  
 button:hover {transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3);}  
 #previewWrapper {position:relative; width:100%; max-height:300px; overflow:hidden; margin:15px auto; border-radius:nonepx; box-shadow:0 5px 15px rgba(0,0,0,0.2);}  
 #preview {width:100%; display:block; touch-action:none;}  
 #linkContainer {display:none; margin-top:15px;}  
-#link {width:100%; padding:10px; border-radius:37px; border:4px solid black; margin-bottom:10px;}  
+#link {width:100%; padding:10px; border-radius:37px; border:0px solid black; margin-bottom:10px;}  
 #loader {display:none; margin-top:10px; font-weight:600; color:#ff6ec4;}  
   
 .history-input-box {  
@@ -91,19 +101,18 @@ button:hover {transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3);
 .history-url-input {  
   width: 100%;  
   padding: 10px 12px 10px 45px;   
-  border: 4px solid black;  
+  border: 0px solid black;  
   border-radius: 25px;  
   font-size: 15px;  
+  background: wheat;
 }  
     
 marquee {
   background: yellow;
-  border-top: 4px solid black;
-  border-bottom: 4px solid black;
   padding: 15px;
   font-weight: bold;
-  
-  border-radius: 0;
+  margin: 30px 30px; 
+  border-radius: 30px;
   display: block;
 }
 
@@ -111,15 +120,132 @@ marquee {
 </style>
 </head>
 <body>
- <script type='text/javascript' src='//pl28125150.effectivegatecpm.com/ce/75/23/ce75232fc2d7b3eb5b13cfb871e6e1bc.js'></script>
+   
+<div id="popupModal" class="popup-modal">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <img src="https://i.ibb.co/gZx9ChhF/blob.png" alt="Popup Image">
+ <p>
+  <i class="fas fa-info-circle" style="font-size: 22px; color: #4CAF50;"></i>
+  
+  যদি উপরোক্ত সমস্যা দেখা দেয়, তাহলে <strong>"Reset All Site Data"</strong> বোতামে ক্লিক করুন। এটি সাধারণত সব ধরনের ব্রাউজার সংক্রান্ত ত্রুটি বা সেশন সমস্যা সমাধান করে।<br>
+  <i class="fas fa-triangle-exclamation" style="font-size: 22px; color: #FF9800;"></i>
+  
+  দয়া করে মনে রাখুন, এই সাইটে কিছু এডাল্ট বিজ্ঞাপন প্রদর্শিত হতে পারে। আমরা চেষ্টা করি ব্যবহারকারীদের জন্য নিরাপদ এবং হালকা অভিজ্ঞতা নিশ্চিত করতে, কিন্তু বিজ্ঞাপনগুলোর বিষয়বস্তু সম্পূর্ণভাবে আমাদের নিয়ন্ত্রণের বাইরে থাকে।
+</p>
+  </div>
+</div>
+
+<style>
+
+.popup-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+}
+
+.popup-content {
+  background-color: rgba(255,255,255,0.95);
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 47px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.popup-content img {
+  width: 100%;
+  border-radius: 40px;
+  margin-bottom: 15px;
+}
+
+.popup-content p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  color: #333;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #ff6ec4;
+}
+</style>
+
+<script>
+// Show popup immediately after page loads
+window.addEventListener('load', () => {
+  document.getElementById('popupModal').style.display = 'block';
+});
+
+// Close popup on click
+document.querySelector('.close-btn').addEventListener('click', () => {
+  document.getElementById('popupModal').style.display = 'none';
+});
+
+// Close popup if user clicks outside the content
+window.addEventListener('click', (e) => {
+  if(e.target.id === 'popupModal'){
+    document.getElementById('popupModal').style.display = 'none';
+  }
+});
+</script>
+<script src="https://pl28125150.effectivegatecpm.com/ce/75/23/ce75232fc2d7b3eb5b13cfb871e6e1bc.js"></script>
+<script async="async" data-cfasync="false" src="https://pl28856480.effectivegatecpm.com/c263c04b95609cae848618185e58aa95/invoke.js"></script>
+
 <marquee><i class="fas fa-bolt"></i> 
-Upload, crop and share your images or GIFs instantly. Get fast links for social media, blogs, or personal use. Easy, free, and quick image uploader!
+আপনার ছবি বা GIF মুহূর্তে আপলোড, ক্রপ এবং শেয়ার করুন। সোশ্যাল মিডিয়া, ব্লগ, বা ব্যক্তিগত ব্যবহারের জন্য দ্রুত লিঙ্ক পান। সহজ, ফ্রি এবং দ্রুত ইমেজ আপলোডার!
 </marquee>
 <div class="container">
-<h2><i class="fas fa-upload"></i> I Upload — Upload Your Generation!</h2>
+<h2><i class="fas fa-upload"></i> I-Upload — FREE PLAN!</h2>
 <input type="file" id="fileInput" accept="image/*,.gif"><br>
 <button id="toggleCropBtn"><i class="fas fa-crop"></i> Enable Crop</button>
 <button id="uploadBtn"><i class="fas fa-upload"></i> Upload</button>
+<button id="resetBtn" >
+  <i class="fas fa-trash"></i> Reset All Site Data
+</button>
+
+
+<script>
+    document.getElementById('resetBtn').addEventListener('click',clearAllSiteData);
+function clearAllSiteData(){
+if(confirm("আপনি কি নিশ্চিত? সব আপলোড, সেটিংস এবং সেশন ডাটা মুছে যাবে।")){
+localStorage.clear();
+sessionStorage.clear();
+if(window.indexedDB){
+indexedDB.databases().then(dbs=>{
+dbs.forEach(db=>{
+indexedDB.deleteDatabase(db.name);
+});
+});
+}
+document.cookie.split(";").forEach(c=>{
+document.cookie=c.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/");
+});
+alert("সাইট ডাটা মুছে ফেলা হয়েছে। রিফ্রেশ হচ্ছে...");
+location.reload();
+}
+}
+
+</script>
 <div id="loader"><i class="fas fa-spinner fa-spin"></i> Uploading...</div>
 <div id="previewWrapper"><img id="preview" src="" alt="Here U can show the preview!"></div>
 <div id="linkContainer">
@@ -131,6 +257,74 @@ Upload, crop and share your images or GIFs instantly. Get fast links for social 
  <h2><i class="fas fa-upload"></i> Your History!</h2>
  <div id="historyBox"></div>
 </div>
+<div class="container" id="container-c263c04b95609cae848618185e58aa95">
+    
+</div>
+
+<div class="container">
+    <script>
+  atOptions = {
+    'key' : '18569f9dcff78edb5062f42a4cad880e',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/18569f9dcff78edb5062f42a4cad880e/invoke.js"></script>
+</div>
+<div class="container">
+    <script>
+  atOptions = {
+    'key' : '0ce525c5a4f47d3a849c94cc45a78df2',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/0ce525c5a4f47d3a849c94cc45a78df2/invoke.js"></script>
+</div>
+<div class="container">
+    <script>
+  atOptions = {
+    'key' : '914356c335a2144f22c7a4ec715c25a2',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+
+<script src="https://www.highperformanceformat.com/914356c335a2144f22c7a4ec715c25a2/invoke.js"></script>
+</div>
+<div class="container">
+    <script>
+  atOptions = {
+    'key' : '36342d3ec9df99b90e75025443919bf6',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/36342d3ec9df99b90e75025443919bf6/invoke.js"></script>
+</div>
+
+
+<div class="container">
+    <script>
+  atOptions = {
+    'key' : '7d0eb3cdd64f3478797269d1d0e0ac04',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/7d0eb3cdd64f3478797269d1d0e0ac04/invoke.js"></script>
+</div>
+<script src="https://pl28856491.effectivegatecpm.com/28/0c/40/280c400038fc8c67190b7fc0fb447a15.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script>
 const fileInput=document.getElementById('fileInput');
@@ -144,51 +338,53 @@ const loader=document.getElementById('loader');
 let cropper=null;
 let cropEnabled=false;
 const imgbbApiKey='ffa6fb5ad76979e8aa67715e5f1b1b93';
+let db;
 
-function loadHistory() {
-    const box = document.getElementById("historyBox");
-    box.innerHTML = "";
-    const list = JSON.parse(localStorage.getItem("uploadHistory") || "[]");
+const request=indexedDB.open('uploadDB',1);
+request.onupgradeneeded=function(e){db=e.target.result;db.createObjectStore('history',{keyPath:'id',autoIncrement:true});}
+request.onsuccess=function(e){db=e.target.result;loadHistory();}
+request.onerror=function(e){console.error('IndexedDB error',e);}
 
-    list.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.style.cssText = "border:5px solid black;padding:5px;border-radius:37px;margin:8px 0;background:white;";
-
-        const img = document.createElement("img");
-        img.src = item.thumb;
-        img.style.cssText = "width:100%;border-radius:37px;border:4px solid black;";
-        div.appendChild(img);
-
-        const wrapper = document.createElement("div");
-        wrapper.className = "history-input-box";
-        wrapper.style.marginTop = "5px";
-
-        const input = document.createElement("input");
-        input.type = "text";
-        input.readOnly = true;
-        input.className = "history-url-input";
-        input.id = `historyInput${index}`;
-        input.value = item.url;
-
-        const btn = document.createElement("button");
-        btn.className = "history-copy-btn";
-        btn.innerHTML = `<i class="fas fa-copy"></i>`;
-        btn.addEventListener("click", () => {
-            navigator.clipboard.writeText(item.url);
-        });
-
-        wrapper.appendChild(btn);
-        wrapper.appendChild(input);
-
-        div.appendChild(wrapper);
-        box.appendChild(div);
-    });
+function addHistory(url,thumb){
+    const tx=db.transaction('history','readwrite');
+    const store=tx.objectStore('history');
+    store.add({url,thumb});
 }
 
-function saveHistory(url,thumb){
-    const list=JSON.parse(localStorage.getItem("uploadHistory")||"[]");
-    list.unshift({url,thumb});
-    localStorage.setItem("uploadHistory",JSON.stringify(list));
+function loadHistory(){
+    const box=document.getElementById("historyBox");
+    box.innerHTML="";
+    const tx=db.transaction('history','readonly');
+    const store=tx.objectStore('history');
+    store.openCursor(null,'prev').onsuccess=function(e){
+        const cursor=e.target.result;
+        if(cursor){
+            const item=cursor.value;
+            const div=document.createElement("div");
+            div.style.cssText="border:0px solid black;padding:5px;border-radius:37px;margin:8px 0;background:white;";
+            const img=document.createElement("img");
+            img.src=item.thumb;
+            img.style.cssText="width:100%;border-radius:37px;border:0px solid black;";
+            div.appendChild(img);
+            const wrapper=document.createElement("div");
+            wrapper.className="history-input-box";
+            wrapper.style.marginTop="5px";
+            const input=document.createElement("input");
+            input.type="text";
+            input.readOnly=true;
+            input.className="history-url-input";
+            input.value=item.url;
+            const btn=document.createElement("button");
+            btn.className="history-copy-btn";
+            btn.innerHTML=`<i class="fas fa-copy"></i>`;
+            btn.addEventListener("click",()=>{navigator.clipboard.writeText(item.url)});
+            wrapper.appendChild(btn);
+            wrapper.appendChild(input);
+            div.appendChild(wrapper);
+            box.appendChild(div);
+            cursor.continue();
+        }
+    }
 }
 
 fileInput.addEventListener('change',e=>{
@@ -236,7 +432,7 @@ uploadBtn.addEventListener('click',async()=>{
         if(data.success){
             linkInput.value=data.data.url;
             linkContainer.style.display='block';
-            saveHistory(data.data.url,preview.src);
+            addHistory(data.data.url,preview.src);
             loadHistory();
         }else{alert("Upload failed!");}
     }catch(err){alert("Error uploading: "+err.message);}
@@ -249,8 +445,5 @@ copyBtn.addEventListener('click',()=>{
     navigator.clipboard.writeText(linkInput.value);
     alert("Link copied!");
 });
-
-loadHistory();
-</script>
-</body>
+</script></body>
 </html>
